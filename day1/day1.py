@@ -49,32 +49,27 @@ all_rows_result_forward = input_strings.apply(find_forward, axis=1) # when axis=
 
 forward_nums = [char for sublist in all_rows_result_forward for char in sublist]
 
-# print(forward_nums)
+print(forward_nums)
 # print(len(forward_nums)) # sanity check, got correct # of chars
 
 
 ##### FIND FIRST NUMBER IN STRING, GOING BACKWARDS
 def find_backwards(row):
     backward_nums = []
-    for char in row[0][::-1]:  # slice notation to reverse the order of chars in the string 
+    for char in row[0][::-1]:
         if char in nums:
             backward_nums.append(char)
-            break  # exit the inner loop if a match is found
+            break  
     return backward_nums
 
 all_rows_result_backward = input_strings.apply(find_backwards, axis=1)
-
 backward_nums = [char for sublist in all_rows_result_backward for char in sublist]
-
-# print(backward_nums)
-
 
 ##### COMBINE 1ST STRING, 2ND STRING, ETC IN FORWARD AND BACKWARDS LISTS. 4413 2193
 concatenated_list = [x + y for x, y in zip(forward_nums, backward_nums)]
 
 ##### CONVERT CHARS TO INTS
 calibration_values = [int(x) for x in concatenated_list]
-# print(calibration_values)
 
 ##### FIND SUM OF ALL CALIBRATION VALUES
 answer = sum(calibration_values)
